@@ -63,11 +63,12 @@ main{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
 }
 section{
-  padding: 5%;
-  width: 100%;
+  padding: 0 5%;
+  height: 64vh;
+  width: 100vw;
 }
 section:first-of-type{
   display: flex;
@@ -81,10 +82,10 @@ input[type='text'],
   border: 1px solid #26a3cc;
   border-radius: 5px;
   height: 30px;
-  width: 70%;
+  width: 70vw;
 }
 .btn{
-  width: 25%;
+  width: 25vw;
   line-height: 24px;
   text-align: center;
 }
@@ -93,6 +94,10 @@ input[type='text'],
  color: #ecdfec;
  cursor: pointer;
  font-weight: 800;
+}
+article{
+  height: 55vh;
+  overflow: scroll;
 }
 ul{
   margin-top: 5%;
@@ -119,7 +124,16 @@ li span{
 }
 /*          Pantallas mayores a 750px          */
 @media (min-width:750px){
-
+  section:first-of-type{
+    padding-top: 1%;
+  }
+  article{
+    height: 61vh;
+    overflow: visible;
+  }
+  ul{
+    margin-top: 1%;
+  }
 }
 /*          Pantallas mayores a 1000px          */
 @media (min-width:1000px){
