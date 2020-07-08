@@ -111,11 +111,17 @@ li span{
   display: inline-block;
   margin-left: 24px;
 }
-.check{
+li img{
   position: absolute;
   top: 5px;
   height: 20px;
   width: 20px;
+}
+li img:last-child{
+  right: 5px;
+}
+li img:last-child:hover{
+  cursor: pointer;
 }
 /*          Main          */
 /*          Pantallas mayores a 500px          */
