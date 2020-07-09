@@ -1,10 +1,11 @@
 class Storage {
   add() {
-
   }
   delete() {
   }
   modify() {
   }
-  read() { }
+  read() {
+    return this.tareas = JSON.parse(localStorage.getItem('tareas'));
+  }
 }
