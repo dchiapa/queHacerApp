@@ -123,6 +123,9 @@ li img:last-child{
 li img:last-child:hover{
   cursor: pointer;
 }
+.noVisible{
+display: none;
+}
 /*          Main          */
 /*          Pantallas mayores a 500px          */
 @media (min-width:500px){
