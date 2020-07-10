@@ -2,6 +2,9 @@ class Storage {
   add(elemento) {
     this.elemento = elemento
     this.tareas = this.read();
+    if (this.tareas == null) {
+      this.tareas = [];
+    }
     this.tareas.push({ 'tarea': `${this.elemento}`, 'estado': 0 });
     localStorage.setItem('tareas', JSON.stringify(this.tareas));
   }

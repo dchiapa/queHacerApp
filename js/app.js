@@ -31,22 +31,25 @@ function cargarTareas() {
   let estado = '';
   let orden = 0;
   tareas = storage.read();
-  tareas.forEach(tarea => {
-    if (tarea.estado == 0) {
-      estado = 'noVisible';
-    } else {
-      estado = '';
-    }
-    let li = document.createElement('li');
-    li.innerHTML = `
+  if (tareas != null) {
+    tareas.forEach(tarea => {
+      if (tarea.estado == 0) {
+        estado = 'noVisible';
+      } else {
+        estado = '';
+      }
+      let li = document.createElement('li');
+      li.innerHTML = `
     <img class="completa ${estado}" src="img/check.svg" alt="completado">
     <span class="tarea" data-order=${orden} data-estado=${tarea.estado}>${tarea.tarea}</span>
     <img class="borrar" src="img/delete.svg" alt="eliminar">
     `;
-    fragmento.appendChild(li);
-    orden = orden + 1;
-  });
-  listaTareas.appendChild(fragmento);
+      fragmento.appendChild(li);
+      orden = orden + 1;
+    });
+    listaTareas.appendChild(fragmento);
+  }
+
   if (window.innerWidth < 500) {
     nuevaTarea.setAttribute('maxlength', '30');
   } else if (window.innerWidth < 575) {
