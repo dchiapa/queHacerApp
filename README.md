@@ -4,6 +4,11 @@ Clasica lista "to do", que permite agregar tareas a realizar, y actualizar su es
 
 Realizado con HTML5, CSS3 y JS.
 
+v 1.0.1:
+
+  - Corregir acciones para primer uso.
+    - No detectaba el array vacío, y buscaba información para cargar.
+
 v 1.0.0:
 
   - Agrega tareas, por defecto en estado pendiente.
