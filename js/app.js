@@ -1,6 +1,6 @@
 // Isntancias de Clases
 const storage = new Storage();
-
+const alert = new Alert();
 // Variables
 const btnAgregar = document.querySelector('#btnTarea');
 const nuevaTarea = document.querySelector('#nuevaTarea');
@@ -49,17 +49,20 @@ function cargarTareas() {
     });
     listaTareas.appendChild(fragmento);
   }
-
   if (window.innerWidth < 500) {
-    nuevaTarea.setAttribute('maxlength', '30');
+    nuevaTarea.setAttribute('maxlength', '26');
   } else if (window.innerWidth < 575) {
-    nuevaTarea.setAttribute('maxlength', '50');
+    nuevaTarea.setAttribute('maxlength', '45');
   }
 }
 function agregarTarea() {
-  storage.add(nuevaTarea.value);
-  cargarTareas();
-  nuevaTarea.value = '';
+  if (nuevaTarea.value != '') {
+    storage.add(nuevaTarea.value);
+    cargarTareas();
+    nuevaTarea.value = '';
+  } else {
+    alert.render('Debe ingresar una tarea nueva');
+  }
 }
 function borrarTarea(e) {
   elemento = e.target.parentNode.firstChild.nextSibling.nextSibling.nextSibling.getAttribute('data-order');
