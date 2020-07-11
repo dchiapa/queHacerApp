@@ -26,6 +26,7 @@ span{
 }
 a{
   color: #d2b48c;
+  text-align: center;
   text-decoration: none;
 }
 /*          Textos Generales          */
@@ -43,13 +44,15 @@ header{
   line-height: 50px;
 }
 footer{
-  height: 70px;
+  max-height: 100px;
+  flex-direction: column;
   line-height: 30px;
   position: absolute;
   bottom: 0;
 }
 footer span{
   text-align: center;
+  width: 100%;
 }
 footer a:hover{
   border: 1px solid #d2b48c;
