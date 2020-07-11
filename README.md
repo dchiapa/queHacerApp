@@ -4,6 +4,12 @@ Clasica lista "to do", que permite agregar tareas a realizar, y actualizar su es
 
 Realizado con HTML5, CSS3 y JS.
 
+v 1.0.2:
+  - Corregir agregar lineas en blanco.
+    - Al agregar tarea, chequea que el input no esté vacio.
+    - Ajustar cantidad de caracteres en dispositivos moviles.
+    - Ajustar maquetado de footer en dispositivos moviles.
+    
 v 1.0.1:
 
   - Corregir acciones para primer uso.
