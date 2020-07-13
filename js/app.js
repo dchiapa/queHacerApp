@@ -66,8 +66,7 @@ function agregarTarea() {
 }
 function borrarTarea(e) {
   elemento = e.target.parentNode.firstChild.nextSibling.nextSibling.nextSibling.getAttribute('data-order');
-  storage.delete(elemento);
-  cargarTareas();
+  alert.confirm(elemento);
 }
 function completarTarea(e) {
   elemento = e.target.getAttribute('data-order');
