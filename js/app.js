@@ -35,6 +35,7 @@ function cargarTareas() {
     tareas.forEach(tarea => {
       if (tarea.estado == 0) {
         estado = 'noVisible';
+        contarTiempo(tarea.publicado);
       } else {
         estado = '';
       }
@@ -72,4 +73,36 @@ function completarTarea(e) {
   elemento = e.target.getAttribute('data-order');
   storage.modify(elemento);
   cargarTareas();
+}
+function contarTiempo(publicado) {
+  let tiempoPublicado = publicado.split('-');
+  tiempoPublicado[0] = tiempoPublicado[0].split('/');
+  tiempoPublicado[1] = tiempoPublicado[1].split(':');
+  let actual = new Date();
+  let actualSegundos = actual.getSeconds();
+  let actualMinutos = actual.getMinutes();
+  let actualHoras = actual.getHours();
+  let diffTiempo = [];
+  let diffSeg = actualSegundos - tiempoPublicado[1][2];
+  let diffMin = actualMinutos - tiempoPublicado[1][1];
+  let diffHoras = actualHoras - tiempoPublicado[1][0];
+  if (diffSeg < 0) {
+    diffMin = diffMin - 1;
+    diffSeg = diffSeg + 60;
+  }
+  if (diffMin < 0) {
+    diffHoras = diffHoras - 1;
+    diffMin = diffMin + 60;
+  }
+  if (diffHoras < 10) {
+    diffHoras = '0' + diffHoras;
+  }
+  if (diffMin < 10) {
+    diffMin = '0' + diffMin;
+  }
+  if (diffSeg < 10) {
+    diffSeg = '0' + diffSeg;
+  }
+  diffTiempo.push(diffHoras, diffMin, diffSeg);
+  console.log('Publicado: ' + tiempoPublicado[1][0] + ':' + tiempoPublicado[1][1] + ':' + tiempoPublicado[1][2] + 'Pasó: ' + diffTiempo[0] + ':' + diffTiempo[1] + ':' + diffTiempo[2])
 }
