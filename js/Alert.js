@@ -33,8 +33,33 @@ class Alert {
       if (e.target.id == 'btnSi') {
         storage.delete(elemento);
       }
-      this.action();
+      alert.action();
       cargarTareas();
+
+    });
+  }
+  opciones(btn1Texto, btn1Accion, btn2Texto, elemento) {
+    this.content = document.createElement('div');
+    this.content.classList.add('alertContainer');
+    this.content.innerHTML = `
+    <span class="btn cerrarBtn"></span>
+    <span id="btn1" class="btn alertBtn"><img class="opcionesImg" src="img/check.svg" alt="completado">${btn1Texto}</span>
+    <span id="btn2" class="btn alertBtn"><img class="opcionesImg" src="img/reloj.svg" alt="tiempo pasado">${btn2Texto}</span>
+    `;
+    document.querySelector('body').appendChild(this.content);
+    this.content = document.querySelector('.alertContainer');
+    this.content.addEventListener('click', e => {
+      e.stopPropagation();
+      if (e.target.id == 'btn1') {
+        btn1Accion(elemento);
+        this.action();
+      } else if (e.target.id == 'btn2') {
+        this.action();
+        alert.render(elemento.target.getAttribute('data-info'))
+
+      } else if (e.target.classList.contains('cerrarBtn')) {
+        this.action();
+      }
     });
   }
   action() {
