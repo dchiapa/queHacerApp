@@ -42,6 +42,7 @@ function cargarTareas() {
   tareas = storage.read();
   if (tareas != null) {
     tareas.forEach(tarea => {
+      hace = '';
       if (tarea.estado == 0) {
         estado = 'noVisible';
       } else {
@@ -55,16 +56,9 @@ function cargarTareas() {
       if (tPasado[0] > 0) {
         hace = hace + tPasado[0] + ' Días ';
       }
-      if (tPasado[1] > 0) {
-        hace = hace + tPasado[1] + ':';
-      }
-      if (tPasado[2] > 0) {
-        hace = hace + tPasado[2] + ':';
-      }
-      if (tPasado[3] > 0) {
-        hace = hace + tPasado[3] + 'hs';
-      }
-      console.log(hace);
+      hace = hace + tPasado[1] + ':';
+      hace = hace + tPasado[2] + ':';
+      hace = hace + tPasado[3] + 'hs';
       info = 'Publicado: ' + publicado + '\n' + 'Hace: ' + hace;
       li = document.createElement('li');
       li.innerHTML = `

@@ -1,7 +1,7 @@
 class Storage {
   add(elemento) {
     this.actual = new Date();
-    this.publicado = this.actual.getDate() + '/' + (this.actual.getMonth() + 1) + '/' + this.actual.getFullYear() + '-' + this.actual.getHours() + ':' + this.actual.getMinutes() + ':' + this.actual.getSeconds();
+    this.publicado = this.actual.getFullYear() + '-' + (this.actual.getMonth() + 1) + '-' + this.actual.getDate() + 'T' + this.actual.getHours() + ':' + this.actual.getMinutes() + ':' + this.actual.getSeconds();
     this.elemento = elemento;
     this.tareas = this.read();
     if (this.tareas == null) {
