@@ -12,6 +12,10 @@ Realizado con HTML5, CSS3 y JS.
     Se aceptan sugerencias xD
 
 v 1.1.0:
+  - Cambiar tooltip por menú.
+    - En mobile no se mostraba.
+    
+v 1.1.0:
   - Agregar tooltip info de la tarea.
     - Muestra la fecha de Publicación y el tiempo pasado.
   - Agregar fondos de distintos colores Para las tareas incompletas.
