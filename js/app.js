@@ -56,11 +56,23 @@ function cargarTareas() {
       if (tPasado[0] > 0) {
         hace = hace + tPasado[0] + ' Días ';
       }
+
       hace = hace + tPasado[1] + ':';
       hace = hace + tPasado[2] + ':';
       hace = hace + tPasado[3] + 'hs';
       info = 'Publicado: ' + publicado + '\n' + 'Hace: ' + hace;
       li = document.createElement('li');
+      if (tarea.estado == 0) {
+        if (tPasado[0] >= 15) {
+          li.classList.add('quince');
+        } else if (tPasado[0] >= 10) {
+          li.classList.add('diez');
+        } else if (tPasado[0] >= 5) {
+          li.classList.add('cinco');
+        }
+
+      }
+
       li.innerHTML = `
     <img class="completa ${estado}" src="img/check.svg" alt="completado">
     <span class="tarea" data-order=${orden} data-estado=${tarea.estado} title="${info}">${tarea.tarea}</span>

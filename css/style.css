@@ -106,9 +106,19 @@ ul{
   margin-top: 5%;
 }
 li{
+  border-radius: 5px;
   line-height: 30px;
   list-style: none;
   position: relative;
+}
+.quince{
+  background-color: rgba(255, 50, 0, 0.431);
+}
+.diez{
+  background-color: rgba(255, 160, 0, 0.431);
+}
+.cinco{
+  background-color: rgba(255, 220, 0, 0.431);
 }
 li span{
   display: inline-block;
