@@ -1,6 +1,8 @@
 // Isntancias de Clases
-const storage = new Storage();
 const alert = new Alert();
+const storage = new Storage();
+const tiempo = new Tiempo();
+
 // Variables
 const btnAgregar = document.querySelector('#btnTarea');
 const nuevaTarea = document.querySelector('#nuevaTarea');
@@ -29,8 +31,10 @@ function cargarTareas() {
   let info = '';
   let li;
   let orden = 0;
+  let publicado;
   let tareas = [];
-  let tiempo = [];
+  let tPasado = 0;
+  let hace = '';
   while (listaTareas.firstChild) {
     listaTareas.removeChild(listaTareas.firstChild);
   }
@@ -43,8 +47,25 @@ function cargarTareas() {
       } else {
         estado = '';
       }
-      tiempo = contarTiempo(tarea.publicado);
-      info = 'Publicado: ' + tiempo[0][0][0] + '/' + tiempo[0][0][1] + '/' + tiempo[0][0][2] + ' - ' + tiempo[0][1][0] + ':' + tiempo[0][1][1] + ':' + tiempo[0][1][2] + '\n' + 'Hace: ' + tiempo[1][0] + ':' + tiempo[1][1] + ':' + tiempo[1][2];
+      publicado = tarea.publicado.split('T');
+      publicado[0] = publicado[0].split('-');
+      publicado[0] = publicado[0][2] + '/' + publicado[0][1] + '/' + publicado[0][0];
+      publicado = publicado[0] + ' - ' + publicado[1];
+      tPasado = tiempo.diff(tarea.publicado, '');
+      if (tPasado[0] > 0) {
+        hace = hace + tPasado[0] + ' Días ';
+      }
+      if (tPasado[1] > 0) {
+        hace = hace + tPasado[1] + ':';
+      }
+      if (tPasado[2] > 0) {
+        hace = hace + tPasado[2] + ':';
+      }
+      if (tPasado[3] > 0) {
+        hace = hace + tPasado[3] + 'hs';
+      }
+      console.log(hace);
+      info = 'Publicado: ' + publicado + '\n' + 'Hace: ' + hace;
       li = document.createElement('li');
       li.innerHTML = `
     <img class="completa ${estado}" src="img/check.svg" alt="completado">
@@ -79,70 +100,4 @@ function completarTarea(e) {
   elemento = e.target.getAttribute('data-order');
   storage.modify(elemento);
   cargarTareas();
-}
-function contarTiempo(publicado) {
-  let actual = new Date();
-  let actualDia;
-  let actualHoras;
-  let actualMinutos;
-  let actualSegundos;
-  let diffDias;
-  let diffHoras;
-  let diffMin;
-  let diffSeg;
-  let diffTiempo = [];
-  let retorno = [];
-  publicado = publicado.split('-');
-  publicado[0] = publicado[0].split('/');
-  publicado[1] = publicado[1].split(':');
-  if (publicado[0][0] < 10) {
-    publicado[0][0] = '0' + publicado[0][0];
-  }
-  if (publicado[0][1] < 10) {
-    publicado[0][1] = '0' + publicado[0][1];
-  }
-  if (publicado[1][0] < 10) {
-    publicado[1][0] = '0' + publicado[1][0];
-  }
-  if (publicado[1][1] < 10) {
-    publicado[1][1] = '0' + publicado[1][1];
-  }
-  if (publicado[1][2] < 10) {
-    publicado[1][2] = '0' + publicado[1][2];
-  }
-  retorno.push(publicado);
-  actualSegundos = actual.getSeconds();
-  actualMinutos = actual.getMinutes();
-  actualHoras = actual.getHours();
-  actualDia = actual.getDate();
-  diffSeg = actualSegundos - publicado[1][2];
-  diffMin = actualMinutos - publicado[1][1];
-  diffHoras = actualHoras - publicado[1][0];
-  diffDias = actualDia - publicado[0][0];
-  if (diffSeg < 0) {
-    diffMin = diffMin - 1;
-    diffSeg = diffSeg + 60;
-  }
-  if (diffMin < 0) {
-    diffHoras = diffHoras - 1;
-    diffMin = diffMin + 60;
-  }
-  if (diffHoras < 0) {
-    diffDias = diffDias - 1;
-    diffHoras = diffHoras + 24;
-  }
-  if (diffHoras < 10) {
-    diffHoras = '0' + diffHoras;
-  }
-  if (diffMin < 10) {
-    diffMin = '0' + diffMin;
-  }
-  if (diffSeg < 10) {
-    diffSeg = '0' + diffSeg;
-  }
-  diffTiempo.push(diffHoras, diffMin, diffSeg);
-  retorno.push(diffTiempo);
-
-  console.log(retorno);
-  return retorno;
 }
