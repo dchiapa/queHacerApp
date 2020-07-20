@@ -50,27 +50,12 @@ function cargarTareas() {
       }
       publicado = tarea.publicado.split('T');
       publicado[0] = publicado[0].split('-');
-<<<<<<< HEAD
-      publicado[0][1] = tiempo.convert(publicado[0][1]);
-      publicado[0][2] = tiempo.convert(publicado[0][2]);
       publicado[0] = publicado[0][2] + '/' + publicado[0][1] + '/' + publicado[0][0];
-      publicado[1] = publicado[1].split(':');
-      publicado[1][0] = tiempo.convert(publicado[1][0]);
-      publicado[1][1] = tiempo.convert(publicado[1][1]);
-      publicado[1][2] = tiempo.convert(publicado[1][2]);
-      publicado[1] = publicado[1][0] + ':' + publicado[1][1] + ':' + publicado[1][2];
-=======
-      publicado[0] = publicado[0][2] + '/' + publicado[0][1] + '/' + publicado[0][0];
->>>>>>> c3dd4e2f69a581dcaceedaa7edf403760c7de189
       publicado = publicado[0] + ' - ' + publicado[1];
       tPasado = tiempo.diff(tarea.publicado, '');
       if (tPasado[0] > 0) {
         hace = hace + tPasado[0] + ' Días ';
       }
-<<<<<<< HEAD
-=======
-
->>>>>>> c3dd4e2f69a581dcaceedaa7edf403760c7de189
       hace = hace + tPasado[1] + ':';
       hace = hace + tPasado[2] + ':';
       hace = hace + tPasado[3] + 'hs';
@@ -84,19 +69,11 @@ function cargarTareas() {
         } else if (tPasado[0] >= 5) {
           li.classList.add('cinco');
         }
-<<<<<<< HEAD
+
       }
       li.innerHTML = `
     <img class="completa ${estado}" src="img/check.svg" alt="completado">
     <span class="tarea" data-order=${orden} data-estado=${tarea.estado} data-info="${info}">${tarea.tarea}</span>
-=======
-
-      }
-
-      li.innerHTML = `
-    <img class="completa ${estado}" src="img/check.svg" alt="completado">
-    <span class="tarea" data-order=${orden} data-estado=${tarea.estado} title="${info}">${tarea.tarea}</span>
->>>>>>> c3dd4e2f69a581dcaceedaa7edf403760c7de189
     <img class="borrar" src="img/delete.svg" alt="eliminar">
     `;
       fragmento.appendChild(li);
@@ -129,5 +106,6 @@ function completarTarea(e) {
   cargarTareas();
 }
 function elegirOpciones(e) {
+  console.dir(e);
   alert.opciones('Completar Tarea', completarTarea, 'Publicado', e);
 }
