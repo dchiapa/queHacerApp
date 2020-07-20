@@ -4,6 +4,21 @@ Clasica lista "to do", que permite agregar tareas a realizar, y actualizar su es
 
 Realizado con HTML5, CSS3 y JS.
 
+ - Por hacer:
+    - Panel de información de funcionamiento.
+    - Boton para limpiar las tareas completas.
+
+ - Por corregir:
+    Se aceptan sugerencias xD
+
+v 1.1.0:
+  - Agregar tooltip info de la tarea.
+    - Muestra la fecha de Publicación y el tiempo pasado.
+  - Agregar fondos de distintos colores Para las tareas incompletas.
+    - Amarillo: Pasaron 5 días.
+    - Naranja: Pasaron 10 días.
+    - Rojo: Pasaron 15 días.
+
 v 1.0.3:
 
   - Corregir confirmacion al borrar.
@@ -33,8 +48,3 @@ v 1.0.0:
   - Corregir: 
     - el máximo de caracteres en dispositivos con menos a 360px de ancho.
     - Al hacer click en borrar, debe pedir confirmación.
-
-  - Agregar:
-    - 2 Columnas para dispositivos muy anchos?
-    - Pedir confirmación para cambiar el estado de la tarea?
-    - Una vez completa una tarea, al recargar se borra de localStorage?

@@ -1,11 +1,13 @@
 class Storage {
   add(elemento) {
-    this.elemento = elemento
+    this.actual = new Date();
+    this.publicado = this.actual.getFullYear() + '-' + (this.actual.getMonth() + 1) + '-' + this.actual.getDate() + 'T' + this.actual.getHours() + ':' + this.actual.getMinutes() + ':' + this.actual.getSeconds();
+    this.elemento = elemento;
     this.tareas = this.read();
     if (this.tareas == null) {
       this.tareas = [];
     }
-    this.tareas.push({ 'tarea': `${this.elemento}`, 'estado': 0 });
+    this.tareas.push({ 'tarea': `${this.elemento}`, 'estado': 0, 'publicado': `${this.publicado}` });
     localStorage.setItem('tareas', JSON.stringify(this.tareas));
   }
   delete(elemento) {

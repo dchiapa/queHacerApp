@@ -1,12 +1,14 @@
 // Isntancias de Clases
-const storage = new Storage();
 const alert = new Alert();
+const storage = new Storage();
+const tiempo = new Tiempo();
+
 // Variables
 const btnAgregar = document.querySelector('#btnTarea');
 const nuevaTarea = document.querySelector('#nuevaTarea');
 const listaTareas = document.querySelector('#listaTareas').firstElementChild;
 
-let tareas = [];
+
 let elemento = '';
 
 // Listeners
@@ -24,24 +26,56 @@ listaTareas.addEventListener('click', e => {
 
 // Funciones
 function cargarTareas() {
+  let estado = '';
+  let fragmento;
+  let info = '';
+  let li;
+  let orden = 0;
+  let publicado;
+  let tareas = [];
+  let tPasado = 0;
+  let hace = '';
   while (listaTareas.firstChild) {
     listaTareas.removeChild(listaTareas.firstChild);
   }
-  let fragmento = document.createDocumentFragment();
-  let estado = '';
-  let orden = 0;
+  fragmento = document.createDocumentFragment();
   tareas = storage.read();
   if (tareas != null) {
     tareas.forEach(tarea => {
+      hace = '';
       if (tarea.estado == 0) {
         estado = 'noVisible';
       } else {
         estado = '';
       }
-      let li = document.createElement('li');
+      publicado = tarea.publicado.split('T');
+      publicado[0] = publicado[0].split('-');
+      publicado[0] = publicado[0][2] + '/' + publicado[0][1] + '/' + publicado[0][0];
+      publicado = publicado[0] + ' - ' + publicado[1];
+      tPasado = tiempo.diff(tarea.publicado, '');
+      if (tPasado[0] > 0) {
+        hace = hace + tPasado[0] + ' Días ';
+      }
+
+      hace = hace + tPasado[1] + ':';
+      hace = hace + tPasado[2] + ':';
+      hace = hace + tPasado[3] + 'hs';
+      info = 'Publicado: ' + publicado + '\n' + 'Hace: ' + hace;
+      li = document.createElement('li');
+      if (tarea.estado == 0) {
+        if (tPasado[0] >= 15) {
+          li.classList.add('quince');
+        } else if (tPasado[0] >= 10) {
+          li.classList.add('diez');
+        } else if (tPasado[0] >= 5) {
+          li.classList.add('cinco');
+        }
+
+      }
+
       li.innerHTML = `
     <img class="completa ${estado}" src="img/check.svg" alt="completado">
-    <span class="tarea" data-order=${orden} data-estado=${tarea.estado}>${tarea.tarea}</span>
+    <span class="tarea" data-order=${orden} data-estado=${tarea.estado} title="${info}">${tarea.tarea}</span>
     <img class="borrar" src="img/delete.svg" alt="eliminar">
     `;
       fragmento.appendChild(li);
