@@ -29,6 +29,9 @@ class Tiempo {
     return this.fecha;
   }
   diff(fecha1, fecha2) {
+    if (fecha2 == undefined) {
+      fecha2 = ''
+    }
     this.fecha1 = new Date(this.validar(fecha1));
     this.fecha2 = new Date(this.validar(fecha2));
     this.resta = this.fecha2.getTime() - this.fecha1.getTime();

@@ -52,7 +52,7 @@ function cargarTareas() {
       publicado[0] = publicado[0].split('-');
       publicado[0] = publicado[0][2] + '/' + publicado[0][1] + '/' + publicado[0][0];
       publicado = publicado[0] + ' - ' + publicado[1];
-      tPasado = tiempo.diff(tarea.publicado, '');
+      tPasado = tiempo.diff(tarea.publicado);
       if (tPasado[0] > 0) {
         hace = hace + tPasado[0] + ' Días ';
       }
